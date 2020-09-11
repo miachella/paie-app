@@ -27,7 +27,7 @@ public class RemunerationEmployeController {
 	}
 
 	@PostMapping
-	public ResponseEntity<?> reservations(
+	public ResponseEntity<?> creerEmploye(
 			@RequestBody @Validated CreerRemunerationEmployeRequestDto remunerationEmploye, BindingResult empValid) {
 
 		if (!empValid.hasErrors()) {

@@ -17,7 +17,7 @@ public class EntrepriseService {
 		this.entrepriseRepository = entrepriseRepository;
 	}
 
-	public Optional<Entreprise> getEntreprise(int id) {
+	public Optional<Entreprise> getEntrepriseById(int id) {
 		return entrepriseRepository.findById(id);
 	}
 

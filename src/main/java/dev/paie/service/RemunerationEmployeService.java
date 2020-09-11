@@ -38,7 +38,7 @@ public class RemunerationEmployeService {
 		List<String> messagesErreurs = new ArrayList<>();
 
 		// récupération de l'instance d'entreprise
-		Optional<Entreprise> optEntreprise = entrepriseService.getEntreprise(entrepriseId);
+		Optional<Entreprise> optEntreprise = entrepriseService.getEntrepriseById(entrepriseId);
 		if (!optEntreprise.isPresent()) {
 			messagesErreurs.add("L'id " + entrepriseId + " ne correspond à aucune entreprise en BDD.");
 		}
