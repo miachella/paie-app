@@ -1,0 +1,59 @@
+package dev.paie.web.bulletinSalaire;
+
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import java.util.Arrays;
+
+import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+
+import dev.paie.entite.BulletinSalaire;
+import dev.paie.service.BulletinSalaireService;
+import dev.paie.service.CotisationService;
+import dev.paie.service.EntrepriseService;
+import dev.paie.service.GradeService;
+import dev.paie.service.PeriodeService;
+import dev.paie.service.ProfilRemunerationService;
+import dev.paie.service.RemunerationEmployeService;
+
+@WebMvcTest(BulletinSalaireController.class)
+public class BulletinSalaireControllerTest {
+
+	@Autowired
+	private MockMvc mockMvc;
+
+	@MockBean
+	private BulletinSalaireService bulletinSalaireService;
+	@MockBean
+	private RemunerationEmployeService remunerationEmployeService;
+	@MockBean
+	private PeriodeService periodeService;
+	@MockBean
+	private CotisationService cotisationService;
+	@MockBean
+	private EntrepriseService entrepriseService;
+	@MockBean
+	private GradeService gradeService;
+	@MockBean
+	private ProfilRemunerationService profilRemunerationService;
+
+	@Test
+	void testGetListeBulletins() throws Exception {
+		// given
+		BulletinSalaire bs1 = new BulletinSalaire();
+		bs1.setId(1);
+		BulletinSalaire bs2 = new BulletinSalaire();
+		bs2.setId(2);
+		// when
+		Mockito.when(bulletinSalaireService.listerBulletins()).thenReturn(Arrays.asList(bs1, bs2));
+		// then
+		mockMvc.perform(MockMvcRequestBuilders.get("/bulletinSalaire")).andExpect(status().isOk())
+				.andExpect(jsonPath("[0].id").value(1)).andExpect(jsonPath("[1].id").value(2));
+	}
+}
