@@ -3,6 +3,7 @@ package dev.paie.web.bulletinSalaire;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+import java.math.BigDecimal;
 import java.util.Arrays;
 
 import org.junit.jupiter.api.Test;
@@ -14,6 +15,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import dev.paie.entite.BulletinSalaire;
+import dev.paie.entite.Grade;
+import dev.paie.entite.RemunerationEmploye;
 import dev.paie.service.BulletinSalaireService;
 import dev.paie.service.CotisationService;
 import dev.paie.service.EntrepriseService;
@@ -48,12 +51,21 @@ public class BulletinSalaireControllerTest {
 		// given
 		BulletinSalaire bs1 = new BulletinSalaire();
 		bs1.setId(1);
+		Grade g1 = new Grade();
+		g1.setNbHeuresBase(new BigDecimal("152"));
+		g1.setTauxBase(new BigDecimal("21"));
+		RemunerationEmploye e1 = new RemunerationEmploye();
+		e1.setGrade(g1);
+		e1.setMatricule("coucou");
+		bs1.setRemunerationEmploye(e1);
+		AfficherBulletinSalaireResponseDto dto1 = new AfficherBulletinSalaireResponseDto(bs1);
 		BulletinSalaire bs2 = new BulletinSalaire();
 		bs2.setId(2);
 		// when
 		Mockito.when(bulletinSalaireService.listerBulletins()).thenReturn(Arrays.asList(bs1, bs2));
+		Mockito.when(bulletinSalaireService.convertToDto(bs1)).thenReturn(dto1);
 		// then
 		mockMvc.perform(MockMvcRequestBuilders.get("/bulletinSalaire")).andExpect(status().isOk())
-				.andExpect(jsonPath("[0].id").value(1)).andExpect(jsonPath("[1].id").value(2));
+				.andExpect(jsonPath("[0].matricule").value("coucou"));
 	}
 }

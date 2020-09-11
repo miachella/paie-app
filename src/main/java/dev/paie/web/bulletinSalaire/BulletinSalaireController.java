@@ -1,5 +1,6 @@
 package dev.paie.web.bulletinSalaire;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,8 +22,14 @@ public class BulletinSalaireController {
 	}
 
 	@GetMapping
-	public List<BulletinSalaire> getListeBulletins() {
-		return bulletinSalaireService.listerBulletins();
+	public List<AfficherBulletinSalaireResponseDto> getListeBulletins() {
+		List<BulletinSalaire> listeObj = bulletinSalaireService.listerBulletins();
+		List<AfficherBulletinSalaireResponseDto> listeDto = new ArrayList<>();
+		for (BulletinSalaire bs : listeObj) {
+			AfficherBulletinSalaireResponseDto dto = bulletinSalaireService.convertToDto(bs);
+			listeDto.add(dto);
+		}
+		return listeDto;
 
 	}
 

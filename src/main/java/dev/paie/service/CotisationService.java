@@ -1,6 +1,6 @@
 package dev.paie.service;
 
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ public class CotisationService {
 		this.cotisationRepository = cotisationRepository;
 	}
 
-	public Optional<Cotisation> getCotisationWithImposable(boolean imposable) {
+	public List<Cotisation> getCotisationWithImposable(boolean imposable) {
 		return cotisationRepository.findAllWithImposable(imposable);
 	}
 
