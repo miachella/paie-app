@@ -37,7 +37,7 @@ public class GradeController {
 	}
 
 	@GetMapping("{id}")
-	public ResponseEntity<?> getEntrepriseFromId(@PathVariable int id) {
+	public ResponseEntity<?> getGradeFromId(@PathVariable int id) {
 
 		Optional<Grade> optionalGrade = gradeService.getGradeById(id);
 
