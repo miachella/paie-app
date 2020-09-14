@@ -44,14 +44,15 @@ public class RemunerationEmployeService {
 		}
 
 		// récupération de l'instance de profil
-		Optional<ProfilRemuneration> optProfilRemuneration = profilRemunerationService.getProfil(profilRemunerationId);
+		Optional<ProfilRemuneration> optProfilRemuneration = profilRemunerationService
+				.getProfilById(profilRemunerationId);
 		if (!optProfilRemuneration.isPresent()) {
 			messagesErreurs
 					.add("L'id " + profilRemunerationId + " ne correspond à aucun profil de rémunération en BDD.");
 		}
 
 		// récupération de l'instance d'entreprise
-		Optional<Grade> optGrade = gradeService.getGrade(gradeId);
+		Optional<Grade> optGrade = gradeService.getGradeById(gradeId);
 		if (!optEntreprise.isPresent()) {
 			messagesErreurs.add("L'id " + gradeId + " ne correspond à aucun grade en BDD.");
 		}

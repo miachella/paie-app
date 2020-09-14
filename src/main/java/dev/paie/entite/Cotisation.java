@@ -3,6 +3,7 @@ package dev.paie.entite;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -16,7 +17,11 @@ public class Cotisation {
 	private Integer id;
 	private String code;
 	private String libelle;
+
+	@Column(columnDefinition = "Decimal(10,6)")
 	private BigDecimal tauxSalarial;
+
+	@Column(columnDefinition = "Decimal(10,6)")
 	private BigDecimal tauxPatronal;
 	private Boolean imposable = false;
 

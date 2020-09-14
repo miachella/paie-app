@@ -1,5 +1,6 @@
 package dev.paie.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -19,6 +20,10 @@ public class EntrepriseService {
 
 	public Optional<Entreprise> getEntrepriseById(int id) {
 		return entrepriseRepository.findById(id);
+	}
+
+	public List<Entreprise> listEntreprise() {
+		return entrepriseRepository.findAll();
 	}
 
 }

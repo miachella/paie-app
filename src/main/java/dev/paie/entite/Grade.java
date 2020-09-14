@@ -3,6 +3,7 @@ package dev.paie.entite;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -13,7 +14,11 @@ public class Grade {
 	@Id
 	private Integer id;
 	private String code;
+
+	@Column(columnDefinition = "Decimal(10,6)")
 	private BigDecimal nbHeuresBase;
+
+	@Column(columnDefinition = "Decimal(10,6)")
 	private BigDecimal tauxBase;
 
 	@OneToMany(mappedBy = "grade")

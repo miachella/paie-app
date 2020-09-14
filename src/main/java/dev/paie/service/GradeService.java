@@ -1,5 +1,6 @@
 package dev.paie.service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -17,8 +18,12 @@ public class GradeService {
 		this.gradeRepository = gradeRepository;
 	}
 
-	public Optional<Grade> getGrade(int id) {
+	public Optional<Grade> getGradeById(int id) {
 		return gradeRepository.findById(id);
+	}
+
+	public List<Grade> listGrade() {
+		return gradeRepository.findAll();
 	}
 
 }

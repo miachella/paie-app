@@ -16,7 +16,7 @@ import dev.paie.exception.PaieException;
 import dev.paie.service.RemunerationEmployeService;
 
 @RestController
-@RequestMapping("remunerationEmploye")
+@RequestMapping("remunerationsEmployes")
 public class RemunerationEmployeController {
 
 	private RemunerationEmployeService remunerationEmployeService;
