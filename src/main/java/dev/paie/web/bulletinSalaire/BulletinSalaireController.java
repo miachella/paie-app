@@ -11,7 +11,7 @@ import dev.paie.entite.BulletinSalaire;
 import dev.paie.service.BulletinSalaireService;
 
 @RestController
-@RequestMapping("bulletinSalaire")
+@RequestMapping("bulletinsSalaire")
 public class BulletinSalaireController {
 
 	private BulletinSalaireService bulletinSalaireService;
